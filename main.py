@@ -4,6 +4,14 @@ from datetime import datetime, timedelta
 # -------- Level 1 --------
 # TODO: Create a function to view all books that are currently available
 # Output should include book ID, title, and author
+def display_inventory():
+    for book in library_books:
+        if book['available'] == True:
+            print("---------------------")
+            for key, value in book.items():
+                print(f"{key}:{value}")
+    print("-------------------")
+
 
 
 # -------- Level 2 --------
@@ -44,4 +52,4 @@ from datetime import datetime, timedelta
 
 if __name__ == "__main__":
     # You can use this space to test your functions
-    pass
+    display_inventory()
