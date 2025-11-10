@@ -29,6 +29,8 @@ def search():
             if author_search.lower() == book['author'].lower():
                 title = book['title']
                 list_of_books.append(title)
+        if len(list_of_books) == 0:
+            print("There is no book under that name")
             
         return list_of_books
     
@@ -38,6 +40,9 @@ def search():
             if genre_search.lower() == book['genre'].lower():
                 title = book['title']
                 genre_list.append(title)
+        if len(genre_list) == 0:
+            print("There is no book under that genre")
+
         return genre_list
 
 
