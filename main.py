@@ -19,6 +19,29 @@ def display_inventory():
 # Search should be case-insensitive
 # Return a list of matching books
 
+def search():
+    list_of_books = []
+    genre_list = []
+    choice = input("Do you want to search by author or genre? A or G: ")
+    if choice.lower() == "a":
+        author_search = input("Name of author: ")
+        for book in library_books:
+            if author_search.lower() == book['author'].lower():
+                title = book['title']
+                list_of_books.append(title)
+            
+        return list_of_books
+    
+    if choice.lower() == "g":
+        genre_search = input("Pick a genre: ")
+        for book in library_books:
+            if genre_search.lower() == book['genre'].lower():
+                title = book['title']
+                genre_list.append(title)
+        return genre_list
+
+
+        
 
 # -------- Level 3 --------
 # TODO: Create a function to checkout a book by ID
@@ -53,3 +76,4 @@ def display_inventory():
 if __name__ == "__main__":
     # You can use this space to test your functions
     display_inventory()
+    print(search())
