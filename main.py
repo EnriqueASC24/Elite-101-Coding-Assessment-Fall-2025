@@ -75,8 +75,24 @@ def checkout():
 # TODO: Create a function to return a book by ID
 # Set its availability to True and clear the due_date
 
+def return_book():
+    id_search = input("What is the ID of the book you are looking for? ")
+
+    for book in library_books:
+        if id_search == book['id']:    
+            book['available'] = True
+            book['due_date'] = None
+
 # TODO: Create a function to list all overdue books
 # A book is overdue if its due_date is before today AND it is still checked out
+
+def overdue_books():
+    list_of_books = []
+    for book in library_books:
+        if book["due_date"] != None:
+            if book["due_date"] <= str(datetime.now()) and book['available'] == False:
+                list_of_books.append(book["title"])
+    print(list_of_books)
 
 
 # -------- Level 5 --------
@@ -98,3 +114,6 @@ if __name__ == "__main__":
     checkout()
     display_available_inventory()
     checkout()
+    return_book()
+    display_available_inventory()
+    overdue_books()
