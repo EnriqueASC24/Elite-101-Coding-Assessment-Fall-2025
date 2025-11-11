@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 # -------- Level 1 --------
 # TODO: Create a function to view all books that are currently available
 # Output should include book ID, title, and author
-def display_inventory():
+def display_available_inventory():
     for book in library_books:
         if book['available'] == True:
             print("---------------------")
@@ -57,6 +57,19 @@ def search():
 # If it is not available:
 #   - Print a message saying it's already checked out
 
+def checkout():
+    id_search = input("What is the ID of the book you are looking for? ")
+
+    for book in library_books:
+        if id_search == book['id']:
+            if book["available"] == True:
+                book["available"] = False
+                book["due_date"] = datetime.now() + timedelta(weeks=2)
+                book["checkouts"] += 1
+            if book["available"] == False:
+                print(f"The book is already checked out")
+
+
 
 # -------- Level 4 --------
 # TODO: Create a function to return a book by ID
@@ -80,5 +93,8 @@ def search():
 
 if __name__ == "__main__":
     # You can use this space to test your functions
-    display_inventory()
+    display_available_inventory()
     print(search())
+    checkout()
+    display_available_inventory()
+    checkout()
