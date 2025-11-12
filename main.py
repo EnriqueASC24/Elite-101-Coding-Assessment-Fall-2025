@@ -145,7 +145,7 @@ class library:
     def search(self):
         list_of_books = []
         genre_list = []
-        choice = input("Do you want to search by author or genre? A or G: ")
+        choice = input("Do you want to search by author[A] or genre[G]? type A or G: ")
         if choice.lower() == "a":
             author_search = input("Name of author: ")
             for book in self.library:
@@ -187,7 +187,7 @@ class library:
 
 
     def checkout(self):
-        id_search = input("What is the ID of the book you are looking for? ")
+        id_search = input("What is the ID of the book you are checking out? ")
 
         for book in self.library:
             if id_search == book['id']:
@@ -199,7 +199,7 @@ class library:
                     print(f"The book is already checked out")
     
     def return_book(self):
-        id_search = input("What is the ID of the book you are looking for? ")
+        id_search = input("What is the ID of the book you are returning? ")
 
         for book in self.library:
             if id_search == book['id']:    
@@ -231,13 +231,3 @@ if __name__ == "__main__":
     while in_use == True:
         display_menu()
         in_use = user_selection()
-    '''
-    display_available_inventory()
-    print(search())
-    checkout()
-    display_available_inventory()
-    checkout()
-    return_book()
-    display_available_inventory()
-    overdue_books()
-    '''
