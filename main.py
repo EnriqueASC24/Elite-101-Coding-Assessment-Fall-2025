@@ -30,7 +30,7 @@ def search():
                 title = book['title']
                 list_of_books.append(title)
         if len(list_of_books) == 0:
-            print("There is no book under that name")
+            print("There is no book under that author's name")
             
         print(list_of_books)
         return(list_of_books)
@@ -169,7 +169,7 @@ class library:
                     title = book['title']
                     list_of_books.append(title)
             if len(list_of_books) == 0:
-                print("There is no book under that name")
+                print("There is no book under that author's name")
                 
             print(list_of_books)
             return(list_of_books)
