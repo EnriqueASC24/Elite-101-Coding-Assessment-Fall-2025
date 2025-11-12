@@ -108,14 +108,15 @@ def display_menu():
   print("3. Search by Author or Genre")  
   print("4. Checkout Book")
   print("5. Return Book")
-  print("6. All Overdue Books")     
-  print("7. Exit\n")  
+  print("6. All Overdue Books")    
+  print("7. Top three checked out books")    
+  print("8. Exit\n")  
         
 
-  #used to capture and process user selections
+  
 def user_selection():
     in_use = True
-    user_choice = int(input("Enter a number between 1-7: "))  
+    user_choice = int(input("Enter a number between 1-8: "))  
     book = library(library_books)
     if user_choice == 1:  
         book.view_all()
@@ -128,14 +129,29 @@ def user_selection():
     elif user_choice == 5:
         book.return_book()
     elif user_choice == 6:
-        book.overdue_books()    
-    elif user_choice == 7:  
+        book.overdue_books()
+    elif user_choice == 7:
+        book.top_three_checked_out()    
+    elif user_choice == 8:  
         print("Thank you for using the program!")             
         in_use = False  
         print("program ends.") 
     else:
         print("\nSorry, Not a Valid Choice. Please try again!")
     return in_use
+
+def top_three_checked_out():
+    number_of_checked_out = []
+    most_checked_out_title = []
+    for i in range(len(library_books)):
+        number_of_checked_out.append(library_books[i]["checkouts"])
+    
+    highest_num_of_checkedout = sorted(number_of_checked_out, reverse= True)
+    for number_of_checkedout in highest_num_of_checkedout:
+        for book in library_books:
+            if number_of_checkedout == book["checkouts"]:
+                most_checked_out_title.append(book["title"])
+    print(f"The top three most checked out books are {most_checked_out_title[0]}, {most_checked_out_title[1]}, and {most_checked_out_title[2]}")
 
 
 class library:
@@ -213,6 +229,21 @@ class library:
                 if str(book["due_date"]) <= str(datetime.now()) and book['available'] == False:
                     list_of_books.append(book["title"])
         print(list_of_books)
+
+    def top_three_checked_out(self):
+        number_of_checked_out = []
+        most_checked_out_title = []
+        for i in range(len(self.library)):
+            number_of_checked_out.append(self.library[i]["checkouts"])
+        
+        highest_num_of_checkedout = sorted(number_of_checked_out, reverse= True)
+        for number_of_checkedout in highest_num_of_checkedout:
+            for book in self.library:
+                if number_of_checkedout == book["checkouts"]:
+                    most_checked_out_title.append(book["title"])
+        
+        print(f"The top three most checked out books are {most_checked_out_title[0]}, {most_checked_out_title[1]}, and {most_checked_out_title[2]}")
+
 
 
 
